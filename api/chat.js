@@ -29,3 +29,13 @@ export default async function handler(req, res) {
   const data = await response.json();
   res.json(data);
 }
+
+/* ---------- Penambahan Code Sederhana untuk bagian kirim ---------- */
+  const firstQuestion = document.querySelectorAll('input[name="question1"]');
+  const submitBtn = document.getElementById('submitBtn');
+
+  firstQuestion.forEach(input => {
+    input.addEventListener('change', () => {
+      submitBtn.disabled = false;
+    });
+  });
