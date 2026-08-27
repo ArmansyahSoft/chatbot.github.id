@@ -14,6 +14,16 @@ export default async function handler(req, res) {
 
   const { messages } = req.body;
 
+  /* ---------- Penambahan Code Sederhana untuk bagian kirim ---------- */
+  const firstQuestion = document.querySelectorAll('input[name="question1"]');
+  const submitBtn = document.getElementById('submitBtn');
+
+  firstQuestion.forEach(input => {
+    input.addEventListener('change', () => {
+      submitBtn.disabled = false;
+    });
+  });
+  
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -29,13 +39,3 @@ export default async function handler(req, res) {
   const data = await response.json();
   res.json(data);
 }
-
-/* ---------- Penambahan Code Sederhana untuk bagian kirim ---------- */
-  const firstQuestion = document.querySelectorAll('input[name="question1"]');
-  const submitBtn = document.getElementById('submitBtn');
-
-  firstQuestion.forEach(input => {
-    input.addEventListener('change', () => {
-      submitBtn.disabled = false;
-    });
-  });
